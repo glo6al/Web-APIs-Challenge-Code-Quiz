@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f8fbff;
+  color: #283959;
+}
+
+/*navbar which includes high score and timer*/
+header {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  background-color: #30343e;
+  color: #f8fbff;
+  text-decoration: none;
+}
+
+.highscores:link,
+.highscores:visited,
+.highscores:active {
+  text-decoration: none;
+}
+
+.highscores {
+  text-decoration: none;
+}
+
+.highscores:hover {
+  color: #f8fbff;
+}
+
+header div {
+  padding: 20px;
+  font-size: 1em;
+}
+
+.timer {
+  text-decoration: none;
+}
+/*body of the file (everything below the navbar)*/
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/*start page container*/
+
+.container {
+  padding: 50px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.questions {
+  justify-content: center;
+  margin: 10px;
+  align-items: center;
+}
+
+#start {
+  font-size: 2em;
+  justify-content: center;
+  margin: 10px;
+}
+
+button {
+  background-color: #fcc945;
+  color: #283959;
+}
+
+/*quiz started and quiz questions*/
+
+.card-title {
+  margin-bottom: 10px;
+}
+
+ul {
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  background: #fcc945;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  color: #283959;
+  cursor: pointer;
+}
+
+ul li:hover {
+  opacity: 50%;
+}
+
+ul li:active {
+  background: #283959;
+  color: #f8fbff;
+}
