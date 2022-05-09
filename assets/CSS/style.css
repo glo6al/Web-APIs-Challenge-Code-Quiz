@@ -18,25 +18,27 @@ body {
 /*navbar which includes high score and timer*/
 header {
   display: flex;
-  padding: 10px;
+  padding: 20px 20px;
   justify-content: space-between;
   background-color: #30343e;
   color: #f8fbff;
   text-decoration: none;
+}
+.highscores {
+  color: #f8fbff;
+  cursor: pointer;
 }
 
 .highscores:link,
 .highscores:visited,
 .highscores:active {
   text-decoration: none;
-}
-
-.highscores {
-  text-decoration: none;
+  cursor: pointer;
 }
 
 .highscores:hover {
   color: #f8fbff;
+  font-weight: bold;
 }
 
 header div {
@@ -57,10 +59,16 @@ main {
 /*start page container*/
 
 .container {
+  position: relative;
+  top: 25%;
   padding: 50px;
+  margin: 0 25px;
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px #30343e;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: white;
 }
 
 .questions {
@@ -77,13 +85,24 @@ main {
 
 button {
   background-color: #fcc945;
+  box-shadow: 2px 1px 3px #30343e;
   color: #283959;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+button:hover {
+  background-color: #283959;
+  color: #f8fbff;
+  cursor: pointer;
 }
 
 /*quiz started and quiz questions*/
 
-.card-title {
+.box-title {
   margin-bottom: 10px;
+  font-size: x-large;
 }
 
 ul {
