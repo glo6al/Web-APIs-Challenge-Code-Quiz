@@ -47,7 +47,7 @@ header div {
 }
 
 .timer {
-  text-decoration: none;
+  color: #f8fbff;
 }
 /*body of the file (everything below the navbar)*/
 main {
@@ -77,11 +77,11 @@ main {
   align-items: center;
 }
 
-#start {
+/* #start {
   font-size: 2em;
   justify-content: center;
   margin: 10px;
-}
+} */
 
 button {
   background-color: #fcc945;

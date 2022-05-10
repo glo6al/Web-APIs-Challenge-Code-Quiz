@@ -12,7 +12,7 @@ var createList = document.createElement("ul");
 var questionArray = [
   {
     question: "Inside which HTML element do we put the JavaScript?",
-    choices: ["<scripting>", "<js>", "script", "javascript"],
+    choices: ["<scripting>", "<js>", "<script>", "<javascript>"],
     answer: "<script>",
   },
   {
@@ -44,15 +44,14 @@ var questionArray = [
     question:
       "What is the correct syntax for referring to an external script called 'xxx.js'?",
     choices: [
-      "<script src='xxx.js'",
-      "<script name='xxx.js'",
-      "<script href='xxx.js'",
-      "<a href='xxx.js'",
+      "<script src='xxx.js>'",
+      "<script name='xxx.js>'",
+      "<script href='xxx.js>'",
+      "<a href='xxx.js>'",
     ],
-    answer: "<script src='xxx.js'",
+    answer: "<script src='xxx.js>'",
   },
 ];
-
 //add event listener to start quiz and begin countdown
 timerEl = addEventListener("click", function () {
   //if number equals 0 then begin countdown from 75
@@ -60,17 +59,18 @@ timerEl = addEventListener("click", function () {
     //add function to show time lift -- countdown by 1000ms
     timeStops = setInterval(function () {
       timeStartCount--;
-      timeLeft.textContent = "Time: " + countLeft;
+      timeLeft.textContent = "Time: " + timeStartCount;
       //stop the countdown when time reaches zero
-      if (countLeft <= 0) {
+      if (timeStartCount <= 0) {
         clearInterval(timeStops);
         timesUp();
       }
     }, 1000);
   }
   //call function to cycle through questions
-  quizLoop();
+  quizLoop(questionIndex);
 });
+
 //add function with loop   quizLoop();    to cycle through questions
 function quizLoop() {
   //connect this function to quizDisplay and createList variables, connecting them to innerHTML
@@ -87,15 +87,39 @@ function quizLoop() {
   }
   //execute function for each item in questionArray
   currentChoices.forEach(function (newItem) {
-    //add vaiable to create new list item
+    //add vaiable to create new list
     var choicesList = document.createElement("li");
     //add new list of choices in text content
     choicesList.textContent = newItem;
+    //append new content to question box
     quizDisplay.appendChild(createList);
+    //append new choices to question box
     createList.appendChild(choicesList);
-    choicesList.addEventListener("click", checkAnswer);
+    //add event listener for selected choice
+    choicesList.addEventListener("click", confirmCorrect);
   });
 }
 
-//add function to check for corrent answers
+//add function to check for correct answers
+function confirmCorrect(clickChoice) {
+  //add variable for clicked choice
+  var selected = clickChoice.target;
+  //if correct answer go to the next question
+  if (selected.textContent === questionArray[questionIndex].answer) {
+    questionIndex++;
+    //if incorrect subtract penalty and go to the next question
+  } else {
+    timeStartCount = timeStartCount - penalty;
+    questionIndex++;
+  }
+  //when all questions have been answered end the quiz
+  if (questionIndex >= questionArray.length) {
+    clearInterval(timeStops);
+    timesUp();
+    //if it the quiz isnt fisnished keep looping through the quiz
+  } else {
+    quizLoop(questionIndex);
+  }
+}
+
 //add end function to end quiz "timesUp" and open highscore.html file
