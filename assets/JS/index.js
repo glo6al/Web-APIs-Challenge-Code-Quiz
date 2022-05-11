@@ -8,6 +8,7 @@ var timeStartCount = 75;
 var timeStops = 0;
 var penalty = 10;
 var createList = document.createElement("ul");
+
 //declare variable possible answers - array
 var questionArray = [
   {
@@ -176,7 +177,7 @@ function timesUp() {
   quizDisplay.appendChild(userInitials);
 
   //add submit button for score input
-  submitScore = document.createElement("button");
+  var submitScore = document.createElement("button");
   //add type attribute to the submit button
   submitScore.setAttribute("type", "submit");
   //add attributes to the submit button
@@ -186,20 +187,24 @@ function timesUp() {
   //append the submit button to the element it just created
   quizDisplay.appendChild(submitScore);
 
-  //add event listener to submit button and store to local data
-  submitScore.addEventListener("submit", function () {
-    var initialsInput = scoreDisplay.value;
+  var clickSubmit = function () {
+    //add event listener to submit button and store to local data
+    clickSubmit.addEventListener("submit", function () {
+      var initialsInput = userInitials.value;
 
-    if (initialsInput === "") {
-      alert("Please enter your intiials.");
-    } else {
-      var userFinalScore = {
-        initials: initialsInput,
-        score: timeStartCount,
-      };
-      localStorage.setItem("highScores", JSON.stringify(userFinalScore));
-      //open highscore.html
-      window.open("../highscore.html");
-    }
-  });
+      //if empty alert to enter intials
+      if (initialsInput === "") {
+        alert("Please enter your intiials.");
+      } else {
+        var userFinalScore = {
+          initials: initialsInput,
+          score: timeStartCount,
+        };
+        console.log(userFinalScore);
+        localStorage.setItem("highScores", JSON.stringify(userFinalScore));
+        //open highscore.html
+        window.location.replace("./highscore.html");
+      }
+    });
+  };
 }

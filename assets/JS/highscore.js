@@ -1,27 +1,25 @@
 //DECLARE VARIABLES
-var highScoreList = document.querySelector("#highhighScoreList");
+var highScoreList = document.querySelector("#highScoreList");
 var clearScoreboard = document.querySelector("#reset");
 var restartQuiz = document.querySelector("#restart");
 
-//EVENT LISTENER TO CLEAR SCOREBOARD
+//retrieve local data
+var scoreboard = localStorage.getItem("highScores");
+var unStringScore = JSON.parse(scoreboard);
+
+if (scoreboard !== null) {
+  for (var i = 0; i < scoreboard.length; i++) {
+    var scoreInitials = document.createElement("li");
+    scoreInitials.textContent =
+      unStringScore.initials + " : " + unStringScore.score;
+    highScoreList.appendChild(scoreInitials);
+  }
+}
+//add event listener to clear button
 clearScoreboard.addEventListener("click", function () {
   localStorage.clear();
   location.reload();
 });
-
-//GET LOCAL DATA
-var scoreboard = localStorage.getItem("storedScores");
-var unStringScore = JSON.parse(scoreboard);
-console.log("saved scores " + unStringScore);
-
-if (scoreboard !== null) {
-  for (var i = 0; i < scoreboard.length; i++) {
-    var scoreItem = document.createElement("li");
-    scoreItem.textContent =
-      unStringScore.initials + " : " + unStringScore.score;
-    highScoreList.appendChild(scoreItem);
-  }
-}
 
 //EVENT LISTENER TO GO BACK TO INDEX HTML
 restartQuiz.addEventListener("click", function () {
