@@ -107,6 +107,7 @@ function confirmCorrect(clickChoice) {
   //if correct answer go to the next question
   if (selected.textContent === questionArray[questionIndex].answer) {
     questionIndex++;
+
     // var displayCorrect = function () {
     //   displayCorrect.createElement("div");
     //   displayCorrect.setAttribute("class", "correctAnswer");
@@ -174,7 +175,8 @@ function timesUp() {
   //add type attribute to the submit button
   submitScore.setAttribute("type", "submit");
   //add attributes to the submit button
-  submitScore.setAttribute("id", "submitScore");
+  submitScore.setAttribute("id", "submit");
+  submitScore.innerHTML = "Submit";
 
   //append the submit button to the element it just created
   quizDisplay.appendChild(submitScore);
@@ -191,9 +193,9 @@ function timesUp() {
         score: timeStartCount,
       };
       localStorage.setItem("storedScores", JSON.stringify(userFinalScore));
-
       //open highscore.html
       window.open.replace("./highscore.html");
     }
   });
+  return quizDisplay;
 }
