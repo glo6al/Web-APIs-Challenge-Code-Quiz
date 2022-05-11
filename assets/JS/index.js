@@ -186,25 +186,30 @@ function timesUp() {
 
   //append the submit button to the element it just created
   quizDisplay.appendChild(submitScore);
-
   var clickSubmit = function () {
+    console.log("hello");
     //add event listener to submit button and store to local data
-    clickSubmit.addEventListener("submit", function () {
-      var initialsInput = userInitials.value;
 
-      //if empty alert to enter intials
-      if (initialsInput === "") {
-        alert("Please enter your intiials.");
-      } else {
-        var userFinalScore = {
-          initials: initialsInput,
-          score: timeStartCount,
-        };
-        console.log(userFinalScore);
-        localStorage.setItem("highScores", JSON.stringify(userFinalScore));
-        //open highscore.html
-        window.location.replace("./highscore.html");
-      }
-    });
+    var initialsInput = userInitials.value;
+    console.log("goodbye");
+
+    //if empty alert to enter intials
+    if (initialsInput === "") {
+      alert("Please enter your intiials.");
+    } else {
+      var userFinalScore = {
+        initials: initialsInput,
+        score: timeStartCount,
+      };
+      console.log(userFinalScore);
+      localStorage.setItem("highScores", JSON.stringify(userFinalScore));
+      //open highscore.html
+      window.location.replace("./highscore.html");
+    }
   };
+
+  //add varialble for submit button
+  var submitMe = document.getElementById("submit");
+  //add event listener for submit button
+  submitMe.addEventListener("click", clickSubmit);
 }

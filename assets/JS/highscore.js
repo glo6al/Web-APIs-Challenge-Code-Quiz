@@ -13,6 +13,7 @@ if (scoreboard !== null) {
     scoreInitials.textContent =
       unStringScore.initials + " : " + unStringScore.score;
     highScoreList.appendChild(scoreInitials);
+    break;
   }
 }
 //add event listener to clear button
@@ -22,6 +23,7 @@ clearScoreboard.addEventListener("click", function () {
 });
 
 //EVENT LISTENER TO GO BACK TO INDEX HTML
-restartQuiz.addEventListener("click", function () {
+restartQuiz.addEventListener("click", function (event) {
+  event.preventDefault;
   window.location.replace("./index.html");
 });
