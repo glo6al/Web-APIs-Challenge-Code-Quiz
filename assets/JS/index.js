@@ -52,8 +52,15 @@ var questionArray = [
     answer: "<script src='xxx.js>'",
   },
 ];
+
 //add event listener to start quiz and begin countdown
-timerEl = addEventListener("click", function () {
+timerEl.addEventListener("click", function () {
+  timerRun();
+  quizLoop();
+});
+
+//add function to start countdown
+function timerRun() {
   //if number equals 0 then begin countdown from 75
   if (timeStops === 0) {
     //add function to show time lift -- countdown by 1000ms
@@ -67,9 +74,7 @@ timerEl = addEventListener("click", function () {
       }
     }, 1000);
   }
-  //call function to cycle through questions
-  quizLoop(questionIndex);
-});
+}
 
 //add function with loop   quizLoop();    to cycle through questions
 function quizLoop() {
@@ -121,7 +126,7 @@ function confirmCorrect(clickChoice) {
     questionIndex++;
   }
   //when all questions have been answered end the quiz
-  if (questionIndex >= questionArray.length) {
+  if (questionIndex === questionArray.length) {
     clearInterval(timeStops);
     timesUp();
     //if the quiz isnt fisnished keep looping through the quiz
@@ -192,10 +197,9 @@ function timesUp() {
         initials: initialsInput,
         score: timeStartCount,
       };
-      localStorage.setItem("storedScores", JSON.stringify(userFinalScore));
+      localStorage.setItem("highScores", JSON.stringify(userFinalScore));
       //open highscore.html
-      window.open.replace("./highscore.html");
+      window.open("../highscore.html");
     }
   });
-  return quizDisplay;
 }
