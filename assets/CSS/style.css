@@ -132,3 +132,6 @@ ul li:active {
   background: #283959;
   color: #f8fbff;
 }
+.correctAnswer {
+  color: #30343e;
+}

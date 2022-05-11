@@ -73,7 +73,7 @@ timerEl = addEventListener("click", function () {
 
 //add function with loop   quizLoop();    to cycle through questions
 function quizLoop() {
-  //connect this function to quizDisplay and createList variables, connecting them to innerHTML
+  //add function to quizDisplay and createList variables, connecting them to innerHTML
   quizDisplay.innerHTML = "";
   createList.innerHTML = "";
   //add for loop to loop through the array of questions
@@ -85,7 +85,7 @@ function quizLoop() {
     //display the current question as text content
     quizDisplay.textContent = currentQuestion;
   }
-  //execute function for each item in questionArray
+  //add function to display/append new question and choices to list
   currentChoices.forEach(function (newItem) {
     //add vaiable to create new list
     var choicesList = document.createElement("li");
@@ -107,6 +107,13 @@ function confirmCorrect(clickChoice) {
   //if correct answer go to the next question
   if (selected.textContent === questionArray[questionIndex].answer) {
     questionIndex++;
+    // var displayCorrect = function () {
+    //   displayCorrect.createElement("div");
+    //   displayCorrect.setAttribute("class", "correctAnswer");
+    //   displayCorrect.textContent = "Correct!";
+    // };
+    //console.log("correctAnswer");
+
     //if incorrect subtract penalty and go to the next question
   } else {
     timeStartCount = timeStartCount - penalty;
@@ -116,10 +123,77 @@ function confirmCorrect(clickChoice) {
   if (questionIndex >= questionArray.length) {
     clearInterval(timeStops);
     timesUp();
-    //if it the quiz isnt fisnished keep looping through the quiz
+    //if the quiz isnt fisnished keep looping through the quiz
   } else {
     quizLoop(questionIndex);
   }
 }
 
 //add end function to end quiz "timesUp" and open highscore.html file
+function timesUp() {
+  quizDisplay.innerHTML = "";
+  timeLeft.innerHTML = "";
+
+  //declare variable and text content for h1
+  var timesUpTitle = document.createElement("h1");
+  //set attribute of id timesUpTitle for new element
+  timesUpTitle.setAttribute("id", "timesUpTitile");
+  //add text contnent to new element
+  timesUpTitle.textContent =
+    "Congratulations! Please enter your initials to add your score to High Scores.";
+
+  //append the new h1 element to quizDisplay
+  quizDisplay.appendChild(timesUpTitle);
+
+  //declare variable to display the users score
+  var userScore = timeStartCount;
+  //create new element to display the user score
+  var scoreDisplay = document.createElement("p");
+  //clear timer display
+  clearInterval(timeStops);
+  //display the user score
+  scoreDisplay.textContent = "You scored: " + userScore;
+
+  //append the user score to quizDisplay
+  quizDisplay.appendChild(scoreDisplay);
+
+  //add input for user initials to input field
+  var userInitials = document.createElement("input");
+  //set attribute for the user intiials
+  userInitials.setAttribute("type", "text");
+  //set attribute for element id
+  userInitials.setAttribute("id", "initials");
+  //set text content to retrieve the user initials
+  userInitials.textContent = "";
+
+  //append the user intitials to quizDisplay
+  quizDisplay.appendChild(userInitials);
+
+  //add submit button for score input
+  submitScore = document.createElement("button");
+  //add type attribute to the submit button
+  submitScore.setAttribute("type", "submit");
+  //add attributes to the submit button
+  submitScore.setAttribute("id", "submitScore");
+
+  //append the submit button to the element it just created
+  quizDisplay.appendChild(submitScore);
+
+  //add event listener to submit button and store to local data
+  submitScore.addEventListener("submit", function () {
+    var initialsInput = scoreDisplay.value;
+
+    if (initialsInput === "") {
+      alert("Please enter your intiials.");
+    } else {
+      var userFinalScore = {
+        initials: initialsInput,
+        score: timeStartCount,
+      };
+      localStorage.setItem("storedScores", JSON.stringify(userFinalScore));
+
+      //open highscore.html
+      window.open.replace("./highscore.html");
+    }
+  });
+}
