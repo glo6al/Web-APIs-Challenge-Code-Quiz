@@ -210,6 +210,6 @@ function timesUp() {
 
   //add varialble for submit button
   var submitMe = document.getElementById("submit");
-  //add event listener for submit button
+  //add event listener for submit button 
   submitMe.addEventListener("click", clickSubmit);
 }

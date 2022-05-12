@@ -23,7 +23,7 @@ clearScoreboard.addEventListener("click", function () {
 });
 
 //EVENT LISTENER TO GO BACK TO INDEX HTML
-restartQuiz.addEventListener("click", function (event) {
-  event.preventDefault;
+restartQuiz.addEventListener("click", function () {
   window.location.replace("./index.html");
 });
+un
