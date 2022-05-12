@@ -1,4 +1,7 @@
-I started by declaring variables that were later called in the different functions. These variables hold the information for the timer, questions, and answers. I then created a function for the timer that begins a countdown once the start button was clicked.
+GitHub URL: https://glo6al.github.io/timed-quiz-art/
+Repository URL: https://github.com/glo6al/timed-quiz-art.git
+
+I started by declaring variables that were later called in the various functions used to run the app. These variables hold the information for the timer, questions, and answers. I then created a function for the timer that begins a countdown once the start button was clicked.
 
 As the countdown timer begins, another function loops the 5 questions. A for loop performs this function and cycles through each question until all questions are answered. I wrote a function globally scope that checks if an answer is correct or not. If the answer is correct, it presents the next question. If incorrect, it subtracts 10 seconds from the users time.
 
